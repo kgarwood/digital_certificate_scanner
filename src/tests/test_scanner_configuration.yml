@@ -1,0 +1,21 @@
+main_certificate_directory: my-app-repo-without-release-process
+repositories_with_releases:
+  - repository_with_release:
+      name: my_app_repo1
+      release_command: ./do_release repo1
+  - repository_with_release:
+      name: my_app_repo2
+      release_command: ./do_release repo2_release
+repositories_without_releases:
+  - repository_without_release: my-app-repo-without-release-process
+release_instructions: 'Once you change all the files that contain the expiring certificate, you will need to use the release tool and run the following commands'
+certificate_types:
+    - type: encryption
+      patterns: ['encrypt']
+    - type: signing
+      patterns: ['sign']
+environment_types:
+    - environment: prod
+      patterns: ['prd', 'prod']
+    - environment: non-prod
+      patterns: ['test', 'tst', 'integration', 'non-prod']
