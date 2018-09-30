@@ -1,0 +1,9 @@
+days_left,expiry_date,environment,type,serial_number,certificate_authority,organisation_name,status,num_locations,num_releases
+-51,2018-08-11 22:10:59,prod,encryption,6565,encryption certifcate for TXW,Charons not Carin,EXPIRED,2,1
+5,2018-10-06 22:10:59,prod,Unknown certificate type,808,SGN cert for another fine service for ABC,Sphinx Cryptically,URGENTLY EXPIRING,2,1
+19,2018-10-20 22:10:59,prod,signing,111,SIGNING cert for service x,Certainly Clever,EXPIRING,4,2
+23,2018-10-24 22:10:59,non-prod,encryption,222,ENCRYPTION certificate for test QQRR,The Other Guys,EXPIRING,3,1
+25,2018-10-26 22:10:59,prod,encryption,454,ENCRYPT certificate for prod,Another Bunch,EXPIRING,3,1
+25,2018-10-26 22:10:59,prod,encryption,333,ENCRYPT certificate for prod,Another Bunch,UNREFERENCED,1,1
+87,2018-12-27 22:10:59,Unknown environment,encryption,9991999,encryption certifcate for Bligh,Orphaned Certs Ltd. Thankfully.,UNREFERENCED,1,0
+179,2019-03-29 22:10:59,prod,encryption,770007,encryption cert for another fine service for YRYR,Fruitful Discussions Ltd.,UNREFERENCED,2,1

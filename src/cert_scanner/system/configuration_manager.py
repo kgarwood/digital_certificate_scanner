@@ -114,7 +114,8 @@ class ConfigurationManager:
         for certificate_type in self.certificate_types:
             pattern_lst = self.certificate_types[certificate_type]
             for pattern in pattern_lst:
-                if pattern in canonical_field_value:
+                canonical_pattern = pattern.upper()
+                if canonical_pattern in canonical_field_value:
                     return certificate_type
         return 'Unknown certificate type'
 

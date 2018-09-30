@@ -134,28 +134,6 @@ def __is_referenced(configuration_manager, locations):
     return(appears_in_main_cert_directory and appears_in_at_least_one_other_repo)
 
 
-def __derive_environment(certificate_authority, locations_lst):
-    for file_path in locations_lst:
-        canonical_file_path = file_path.upper()
-
-        if 'TEST' in canonical_file_path:
-            return 'non-prod'
-        if 'INTEGRATION' in canonical_file_path:
-            return 'non-prod'
-        if 'PROD' in canonical_file_path:
-            return 'prod'
-        if 'IDAP_ROOT_CA' in canonical_file_path:
-            return 'prod'
-
-    if 'TEST' in certificate_authority:
-        return 'non-prod'
-    if 'NON-PROD' in certificate_authority:
-        return 'non-prod'
-    if 'PROD' in certificate_authority:
-        return 'prod'
-
-    return 'unknown'
-
 def get_required_releases(configuration_manager, locations):
     results = set()
     for file_path in locations:

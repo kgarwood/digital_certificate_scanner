@@ -1,0 +1,164 @@
+-------------------------------------------------------
+Subject:Cert encryption certifcate for TXW expires in -51 days on 2018-08-11 22:10:59
+Message Body:
+Environment:prod
+Certificate Type:encryption
+Status: EXPIRED
+Organisation:Charons not Carin
+Serial Number:6565
+Locations (2)
+---------------
+~/code/my-main-cert-directory/TXW_enc.crt
+
+~/code/my_app_repo1/prod/TXW_service_config.yml
+
+Releases (1)
+---------------
+Once you change all the files that contain the expiring certificate, you will need to use the release script as follows:
+./do_release repo1
+
+-------------------------------------------------------
+-------------------------------------------------------
+Subject:Cert SGN cert for another fine service for ABC expires in 5 days on 2018-10-06 22:10:59
+Message Body:
+Environment:prod
+Certificate Type:Unknown certificate type
+Status: URGENTLY EXPIRING
+Organisation:Sphinx Cryptically
+Serial Number:808
+Locations (2)
+---------------
+~/code/my_app_repo1/prod/ABC_service_config.yml
+
+~/code/my-main-cert-directory/ABC_v3-4-5.crt
+
+Releases (1)
+---------------
+Once you change all the files that contain the expiring certificate, you will need to use the release script as follows:
+./do_release repo1
+
+-------------------------------------------------------
+-------------------------------------------------------
+Subject:Cert SIGNING cert for service x expires in 19 days on 2018-10-20 22:10:59
+Message Body:
+Environment:prod
+Certificate Type:signing
+Status: EXPIRING
+Organisation:Certainly Clever
+Serial Number:111
+Locations (4)
+---------------
+~/code/my_app_repo2/x_sgn2.crt
+
+~/code/my_app_repo1/servicex_signing.crt
+
+~/code/my-main-cert-directory/x_x09.crt
+
+~/code/my_app_repo2/my_service_prod.yml
+
+Releases (2)
+---------------
+Once you change all the files that contain the expiring certificate, you will need to use the release script as follows:
+./do_release repo1
+
+./do_release repo2_release
+
+-------------------------------------------------------
+-------------------------------------------------------
+Subject:Cert ENCRYPTION certificate for test QQRR expires in 23 days on 2018-10-24 22:10:59
+Message Body:
+Environment:non-prod
+Certificate Type:encryption
+Status: EXPIRING
+Organisation:The Other Guys
+Serial Number:222
+Locations (3)
+---------------
+~/code/my-app-repo-without-release-process/xyz.crt
+
+~/code/my-main-cert-directory/my_xyz_config.yml
+
+~/code/test/my_xyz_config.yml
+
+Releases (1)
+---------------
+Once you change all the files that contain the expiring certificate, you will need to use the release script as follows:
+Unknown release process for ~/code/test/my_xyz_config.yml. Ask a colleague.
+
+-------------------------------------------------------
+-------------------------------------------------------
+Subject:Cert ENCRYPT certificate for prod expires in 25 days on 2018-10-26 22:10:59
+Message Body:
+Environment:prod
+Certificate Type:encryption
+Status: EXPIRING
+Organisation:Another Bunch
+Serial Number:454
+Locations (3)
+---------------
+~/code/my_app_repo2/test/my_xyz_config.yml
+
+~/code/my-main-cert-directory/test/R454.crt
+
+~/code/my_app_repo2/test/R454_config.yml
+
+Releases (1)
+---------------
+Once you change all the files that contain the expiring certificate, you will need to use the release script as follows:
+./do_release repo2_release
+
+-------------------------------------------------------
+-------------------------------------------------------
+Subject:Cert ENCRYPT certificate for prod expires in 25 days on 2018-10-26 22:10:59
+Message Body:
+Environment:prod
+Certificate Type:encryption
+Status: UNREFERENCED
+Organisation:Another Bunch
+Serial Number:333
+Locations (1)
+---------------
+~/code/my_app_repo2/test/my_xyz_config.yml
+
+Releases (1)
+---------------
+Once you change all the files that contain the expiring certificate, you will need to use the release script as follows:
+./do_release repo2_release
+
+-------------------------------------------------------
+-------------------------------------------------------
+Subject:Cert encryption certifcate for Bligh expires in 87 days on 2018-12-27 22:10:59
+Message Body:
+Environment:Unknown environment
+Certificate Type:encryption
+Status: UNREFERENCED
+Organisation:Orphaned Certs Ltd. Thankfully.
+Serial Number:9991999
+Locations (1)
+---------------
+~/code/my-main-cert-directory/Bligh_enc.crt
+
+Releases (0)
+---------------
+Once you change all the files that contain the expiring certificate, you will need to use the release script as follows:
+-------------------------------------------------------
+-------------------------------------------------------
+Subject:Cert encryption cert for another fine service for YRYR expires in 179 days on 2019-03-29 22:10:59
+Message Body:
+Environment:prod
+Certificate Type:encryption
+Status: UNREFERENCED
+Organisation:Fruitful Discussions Ltd.
+Serial Number:770007
+Locations (2)
+---------------
+~/code/my_app_repo1/prod/YRYR_service_config.yml
+
+~/code/my_app_repo1/prod/YRYR.crt
+
+Releases (1)
+---------------
+Once you change all the files that contain the expiring certificate, you will need to use the release script as follows:
+./do_release repo1
+
+-------------------------------------------------------
