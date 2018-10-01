@@ -48,7 +48,7 @@ def create_email_message_record(configuration_manager, row):
         email_message_dct['subject'] = \
             "Cert {} expired {} days ago on {}".format(
                 row['certificate_authority'],
-                row['days_left'],
+                row['days_left']*-1,
                 row['expiry_date'])
 
     environment_field = "Environment:{}\n".format(row['environment'])
