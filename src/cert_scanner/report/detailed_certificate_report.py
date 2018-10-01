@@ -38,11 +38,18 @@ def create_email_message_record(configuration_manager, row):
     email_message_dct = dict()
 
     # Create the Subject field
-    email_message_dct['subject'] = \
-        "Cert {} expires in {} days on {}".format(
-            row['certificate_authority'],
-            row['days_left'],
-            row['expiry_date'])
+    if row['days_left'] >= 0:
+        email_message_dct['subject'] = \
+            "Cert {} expires in {} days on {}".format(
+                row['certificate_authority'],
+                row['days_left'],
+                row['expiry_date'])
+    else:
+        email_message_dct['subject'] = \
+            "Cert {} expired {} days ago on {}".format(
+                row['certificate_authority'],
+                row['days_left'],
+                row['expiry_date'])
 
     environment_field = "Environment:{}\n".format(row['environment'])
     certificate_type_field = "Certificate Type:{}\n".format(row['type'])
