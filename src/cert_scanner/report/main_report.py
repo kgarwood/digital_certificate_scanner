@@ -39,7 +39,7 @@ def generate_reports(configuration_manager,
 
     certificate_expiry_spreadsheet.generate_cert_expiration_reports(
         output_directory,
-        relevant_certs_df,
+        all_certs_df,
         start_date,
         end_date)
 
@@ -51,7 +51,7 @@ def generate_reports(configuration_manager,
 
     detailed_certificate_report.generate(configuration_manager,
                                          output_directory,
-                                         relevant_certs_df,
+                                         all_certs_df,
                                          start_date,
                                          end_date)
 

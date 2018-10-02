@@ -10,10 +10,8 @@ or aggregates them.
 """
 
 
-def enhance_and_filter_certificates(configuration_manager,
-                                    all_certs_df,
-                                    start_date,
-                                    end_date):
+def enhance_certificates(configuration_manager,
+                         all_certs_df):
     """
     Derive more information about each certificate and filter them
     based on whether they're expiring within the date range (a year)
@@ -24,22 +22,26 @@ def enhance_and_filter_certificates(configuration_manager,
         derive_additional_cert_metadata(
             configuration_manager,
             all_certs_df)
-    results_df = \
-        filter_certs_by_time_frame(results_df,
-                                   end_date)
 
-    date_range_phrase = \
-        certificate_scanner_utility.generate_date_range_phrase(start_date,
-                                                               end_date)
 
-    print(('Of all {} x509 certificates, '
-           '{} will expire between '
-           '{}\n\n').format(len(all_certs_df),
-                            len(results_df),
-                            date_range_phrase))
 
     return results_df
 
+
+def filter_certs_by_time_frame(original_df,
+                               start_date,
+                               end_date):
+    df = original_df.copy()
+    if start_date is not None and end_date is not None:
+        df = \
+            df[(df['expiry_date'] >= start_date) & (df['expiry_date'] <= end_date)]
+    elif start_date is not None:
+        df = df[df['expiry_date'] >= start_date]
+    elif end_date is not None:
+        df = df[df['expiry_date'] <= end_date]
+    else:
+        raise ValueError("No time frame specified")
+    return df
 
 def derive_additional_cert_metadata(configuration_manager, certs_df):
     df = certs_df.copy()
@@ -154,20 +156,19 @@ def derive_location_and_release_counts(original_df):
 
     return df
 
-def filter_certs_by_time_frame(original_df,
-                               end_date):
-    df = original_df.copy()
-    df = df[df['expiry_date'] <= end_date]
-    return df
-
-
 def get_results_by_week(start_date, original_df):
     df = original_df.copy()
     weeks_df = \
-        certificate_scanner_utility.create_week_name_data_frame(start_date)
-    df['expiry_week'] = df['expiry_date'].dt.strftime('%W')
+        certificate_scanner_utility.create_monday_week_name_data_frame(start_date)
+    df = get_nearest_monday(df)
     return aggregate_results('expiry_week', df, weeks_df)
 
+def get_nearest_monday(original_df):
+    df = original_df.copy()
+    df['expiry_week'] = \
+        df['expiry_date'].apply(lambda s: certificate_scanner_utility.find_nearest_monday(s))
+    df['expiry_week'] = df['expiry_week'].apply(lambda s: s.strftime('%b %d'))
+    return df
 
 def get_results_by_month(start_date, original_df):
     df = original_df.copy()

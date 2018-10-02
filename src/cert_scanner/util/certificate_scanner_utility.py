@@ -23,6 +23,12 @@ def generate_date_range_phrase(start_date, end_date):
 def get_today():
     return datetime.datetime.now()
 
+def find_nearest_monday(date):
+    today_weekday = date.weekday()
+    if today_weekday == 0:
+        return date
+    else:
+        return date - datetime.timedelta(days=today_weekday)
 
 def find_next_monday(date):
     today_weekday = date.weekday()
@@ -35,6 +41,17 @@ def find_next_monday(date):
         next_monday_start_date = \
             date + datetime.timedelta(7 - today_weekday)
     return next_monday_start_date
+
+def create_monday_week_name_data_frame(start_date):
+    next_monday_date = find_nearest_monday(start_date)
+    week_lst = []
+    for i in range(0, 52):
+        current_date = next_monday_date + relativedelta(weeks=i)
+        week_entry = current_date.strftime('%b %d')
+        week_lst.append(week_entry)
+    weeks_df = pd.DataFrame(week_lst)
+    weeks_df.columns = ['expiry_week']
+    return weeks_df
 
 
 def create_week_name_data_frame(start_date):

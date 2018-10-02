@@ -55,12 +55,14 @@ def generate_weekly_reports(output_directory,
     graph_file_path = os.path.join(output_directory, graph_file_name)
 
     progress_graph_generator.generate(weekly_expiration_metrics_df,
+                                      output_directory,
                                       'weekly',
                                       'expiry_week',
                                       'Week',
                                       start_date,
                                       end_date,
-                                      output_directory)
+                                      20,
+                                      4)
 
 
 def generate_monthly_reports(output_directory,
@@ -88,9 +90,11 @@ def generate_monthly_reports(output_directory,
     graph_file_path = os.path.join(output_directory, graph_file_name)
 
     progress_graph_generator.generate(monthly_expiration_metrics_df,
+                                      output_directory,
                                       'monthly',
                                       'expiry_month',
                                       'Month',
                                       start_date,
                                       end_date,
-                                      output_directory)
+                                      0,
+                                      2)

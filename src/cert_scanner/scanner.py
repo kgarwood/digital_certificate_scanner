@@ -20,6 +20,8 @@
 # DEALINGS IN THE SOFTWARE.
 from cert_scanner.system.configuration_manager import \
     create_configuration_manager
+import cert_scanner.util.certificate_scanner_utility as \
+    certificate_scanner_utility
 import cert_scanner.extract.main_extraction as main_extraction
 from cert_scanner.util.certificate_scanner_utility import calculate_date_range
 import cert_scanner.transform.main_transformation as main_transformation
@@ -47,15 +49,29 @@ def scan(use_demo, configuration_file_path):
         main_extraction.extract_all_x509_certificates(
                             use_demo,
                             configuration_manager)
+    all_certs_df = \
+        main_transformation.derive_additional_cert_metadata(
+            configuration_manager,
+            all_certs_df)
+
 
     start_date, end_date = calculate_date_range()
-
     relevant_certs_df = \
-        main_transformation.enhance_and_filter_certificates(
-            configuration_manager,
+        main_transformation.filter_certs_by_time_frame(
             all_certs_df,
             start_date,
             end_date)
+
+    date_range_phrase = \
+        certificate_scanner_utility.generate_date_range_phrase(start_date,
+                                                               end_date)
+    print(('Of all {} x509 certificates, '
+           '{} will expire between '
+           '{}\n\n').format(len(all_certs_df),
+                            len(relevant_certs_df),
+                            date_range_phrase))
+
+
     weekly_expiration_metrics_df = \
         main_transformation.get_results_by_week(start_date,
                                                 relevant_certs_df)
