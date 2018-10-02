@@ -270,8 +270,6 @@ def __generate_period_to_period_phrase(expiry_type,
                 end_date.strftime("%W %Y"))
 
 
-
-
 def __generate_date_range_phrase(period_phrase, start_date, end_date):
     return "from {} to {}\n({} {} to {} {})".format(
                 start_date.strftime("%d %b %Y"),
