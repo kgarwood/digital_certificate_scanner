@@ -4,16 +4,19 @@ import cert_scanner.util.certificate_scanner_utility as \
 
 import matplotlib.pyplot as plt
 from matplotlib.ticker import MaxNLocator
+from matplotlib.ticker import MultipleLocator
+
 import os
 
 
 def generate(original_df,
+             output_directory,
              expiry_type,
              expiry_period_field_name,
              expiry_period_phrase,
              start_date,
              end_date,
-             output_directory):
+             show_every_ith_x_label):
 
     title_date_phrase = \
         "from {} to {}\n({} {} to Week {})".format(
@@ -30,7 +33,8 @@ def generate(original_df,
                                expiry_period_field_name,
                                expiry_period_phrase,
                                start_date,
-                               end_date)
+                               end_date,
+                               show_every_ith_x_label)
 
     __generate_num_releases_graph(original_df,
                                   output_directory,
@@ -38,7 +42,8 @@ def generate(original_df,
                                   expiry_period_field_name,
                                   expiry_period_phrase,
                                   start_date,
-                                  end_date)
+                                  end_date,
+                                  show_every_ith_x_label)
 
     __generate_num_locations_graph(original_df,
                                    output_directory,
@@ -46,7 +51,8 @@ def generate(original_df,
                                    expiry_period_field_name,
                                    expiry_period_phrase,
                                    start_date,
-                                   end_date)
+                                   end_date,
+                                   show_every_ith_x_label)
 
 
 def __generate_num_locations_graph(original_df,
@@ -55,7 +61,8 @@ def __generate_num_locations_graph(original_df,
                                    expiry_period_field_name,
                                    expiry_period_phrase,
                                    start_date,
-                                   end_date):
+                                   end_date,
+                                   show_every_ith_x_label):
 
     title_date_phrase = \
         __generate_title_phrase(start_date, end_date, expiry_period_phrase)
@@ -85,8 +92,12 @@ def __generate_num_locations_graph(original_df,
     plt.suptitle(num_locations_title, fontsize=14)
     plt.title(date_to_date_phrase, fontsize=10)
 
-    plt.setp(ax.get_xticklabels()[::2], visible=False)
-    plt.setp(ax.get_xticklabels()[::2], visible=False)
+    majorLocator = MultipleLocator(show_every_ith_x_label)
+    minorLocator = MultipleLocator(2)
+    ax.xaxis.set_major_locator(majorLocator)
+    ax.xaxis.set_minor_locator(minorLocator)
+    plt.setp(ax.get_xminorticklabels(), visible=False)
+    plt.setp(ax.get_xmajorticklabels(), visible=True)
     plt.setp(ax.get_xticklabels(), rotation=0, horizontalalignment='center')
     plt.xlabel('Expiry {}'.format(expiry_period_phrase))
     plt.ylabel('Total Files')
@@ -108,7 +119,8 @@ def __generate_num_certs_graph(original_df,
                                expiry_period_field_name,
                                expiry_period_phrase,
                                start_date,
-                               end_date):
+                               end_date,
+                               show_every_ith_x_label):
 
     period_to_period_phrase = \
         __generate_period_to_period_phrase(expiry_type,
@@ -133,7 +145,13 @@ def __generate_num_certs_graph(original_df,
     plt.suptitle(num_certs_title, fontsize=14)
     plt.title(date_to_date_phrase, fontsize=10)
 
-    plt.setp(ax.get_xticklabels()[::2], visible=False)
+
+    majorLocator = MultipleLocator(show_every_ith_x_label)
+    minorLocator = MultipleLocator(2)
+    ax.xaxis.set_major_locator(majorLocator)
+    ax.xaxis.set_minor_locator(minorLocator)
+    plt.setp(ax.get_xminorticklabels(), visible=False)
+    plt.setp(ax.get_xmajorticklabels(), visible=True)
     plt.setp(ax.get_xticklabels(), rotation=0, horizontalalignment='center')
     plt.xlabel('Expiry {}'.format(expiry_period_phrase))
     plt.ylabel('Total Certificates')
@@ -155,7 +173,8 @@ def __generate_num_releases_graph(original_df,
                                   expiry_period_field_name,
                                   expiry_period_phrase,
                                   start_date,
-                                  end_date):
+                                  end_date,
+                                  show_every_ith_x_label):
 
     period_to_period_phrase = \
         __generate_period_to_period_phrase(expiry_type,
@@ -180,7 +199,12 @@ def __generate_num_releases_graph(original_df,
     plt.suptitle(num_releases_title, fontsize=14)
     plt.title(date_to_date_phrase, fontsize=10)
 
-    plt.setp(ax.get_xticklabels()[::2], visible=False)
+    majorLocator = MultipleLocator(show_every_ith_x_label)
+    minorLocator = MultipleLocator(2)
+    ax.xaxis.set_major_locator(majorLocator)
+    ax.xaxis.set_minor_locator(minorLocator)
+    plt.setp(ax.get_xminorticklabels(), visible=False)
+    plt.setp(ax.get_xmajorticklabels(), visible=True)
     plt.setp(ax.get_xticklabels(),
              rotation=0,
              horizontalalignment='center')
